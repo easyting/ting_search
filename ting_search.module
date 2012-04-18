@@ -373,6 +373,10 @@ function ting_search_search_execute($keys = NULL, $conditions = NULL) {
   }
 
   drupal_static('ting_search_results', $searchResult);
+  
+  if(module_exists('bibdk_searchhistory')){
+    module_invoke('bibdk_searchhistory', 'set_search_results', $keys, $searchResult);
+  }
 
   return $results;
 }
