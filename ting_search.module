@@ -348,6 +348,7 @@ function ting_search_search_execute($keys = NULL, $conditions = NULL) {
       $searchResult = ting_do_search($query, $page + 1, $resultsPerPage, $options);
     }
     else {
+      watchdog('ting_search','Enable ting-module to get searchresults',array(),WATCHDOG_CRITICAL);
       $searchResult = array();
     }
 
