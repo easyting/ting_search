@@ -3,7 +3,6 @@ description = Searching for Ting.
 package = Ding!
 version = "7.x-0.26"
 core = 7.x
-files[] = ting_search.module
 files[] = ting_search.test
 ;dependencies[] = ting
 dependencies[] = search
