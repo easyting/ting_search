@@ -47,7 +47,7 @@ function ting_search_menu_alter(&$items) {
  */
 function ting_search_search_info() {
   return array(
-    'title' => t('Ting'),
+    'title' => t('Materials'),
     'path' => 'ting',
     'conditions_callback' => 'ting_search_conditions_callback',
   );
@@ -342,8 +342,16 @@ function ting_search_search_execute($keys = NULL, $conditions = NULL) {
     if (!empty($conditions['sort'])) {
       $options['sort'] = $conditions['sort'];
     }
+    
 
-    $searchResult = ting_do_search($query, $page + 1, $resultsPerPage, $options);
+    if (module_exists('ting')) {
+      $searchResult = ting_do_search($query, $page + 1, $resultsPerPage, $options);
+    }
+    else {
+      watchdog('ting_search','Enable ting-module to get searchresults',array(),WATCHDOG_CRITICAL);
+      $searchResult = array();
+    }
+
     if (isset($searchResult->collections)) {
       $searchResult->search_key = $keys;
 
