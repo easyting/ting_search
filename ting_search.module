@@ -37,8 +37,8 @@ function ting_search_menu_alter(&$items) {
   $items['search/ting']['title'] = 'Materials';
   $items['search/ting/%menu_tail']['title'] = 'Materials';
   $items['search/meta/%menu_tail']['load arguments'] = array('%map', '%index');
-  $items['search/meta']['title'] = 'Meta search';
-  $items['search/meta/%menu_tail']['title'] = 'Meta search';
+  $items['search/meta']['title'] = 'E-ressources';
+  $items['search/meta/%menu_tail']['title'] = 'E-ressources';
   $items['search/meta/%menu_tail']['load arguments'] = array('%map', '%index');
 }
 
