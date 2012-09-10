@@ -31,14 +31,14 @@ function ting_search_ctools_plugin_api($module, $api) {
  * Temporary hack to alter titles.
  */
 function ting_search_menu_alter(&$items) {
-  $items['search/node']['title'] = 'Hjemmeside';
-  $items['search/node/%menu_tail']['title'] = 'Hjemmeside';
+  $items['search/node']['title'] = 'Website';
+  $items['search/node/%menu_tail']['title'] = 'Website';
   $items['search/node/%menu_tail']['load arguments'] = array('%map', '%index');
-  $items['search/ting']['title'] = 'Brønd';
-  $items['search/ting/%menu_tail']['title'] = 'Brønd';
+  $items['search/ting']['title'] = 'Materials';
+  $items['search/ting/%menu_tail']['title'] = 'Materials';
   $items['search/meta/%menu_tail']['load arguments'] = array('%map', '%index');
-  $items['search/meta']['title'] = 'Universal Search';
-  $items['search/meta/%menu_tail']['title'] = 'Universal Search';
+  $items['search/meta']['title'] = 'Meta search';
+  $items['search/meta/%menu_tail']['title'] = 'Meta search';
   $items['search/meta/%menu_tail']['load arguments'] = array('%map', '%index');
 }
 
