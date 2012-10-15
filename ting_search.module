@@ -855,14 +855,14 @@ function ting_search_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 
     $active_tab = '';
     foreach ($data['tabs'][0]['output'] as $key => $item) {
-      if (array_key_exists ('#active', $item )) {
+      if (array_key_exists('#active', $item )) {
         $active_tab = $item['#link']['path'];
         break;
       }
     }
 
     $ting_search_result = drupal_static('ting_search_results');
-    $ting_total_objs = (!empty($ting_search_result->numTotalObjects)) ? $ting_search_result->numTotalObjects : '0';
+    $ting_total_objs = !empty($ting_search_result->numTotalObjects) ? $ting_search_result->numTotalObjects : '0';
 
     $site_total_objs = '0';
     $view = views_get_view('ding_node_search');
