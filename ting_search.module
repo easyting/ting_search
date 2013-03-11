@@ -374,6 +374,8 @@ function ting_search_search_execute($keys = NULL, $conditions = NULL) {
           'type' => '',
           'user' => '',
           'date' => '',
+          'link' => '/ting/collection/' . $collection->reply->objects[0]->id,
+          'title' => $collection->reply->objects[0]->record['dc:title'][''][0],
           'snippet' => drupal_render($build),
         );
       }
