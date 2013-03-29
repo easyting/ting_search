@@ -374,6 +374,8 @@ function ting_search_search_execute($keys = NULL, $conditions = NULL) {
           'type' => '',
           'user' => '',
           'date' => '',
+          'link' => url($uri['path']),
+          'title' => $collection->reply->objects[0]->record['dc:title'][''][0],
           'snippet' => drupal_render($build),
         );
       }
@@ -732,6 +734,7 @@ function ting_search_submit($form, &$form_state) {
 
   $form_id = $form['form_id']['#value']; // 'search_block_form'
   $keys = $form_state['values'][$form_id];
+  $keys = str_replace(array('(', ')', '[', ']'), array('\(', '\)', '\[', '\]'), $keys);
   $fields = array();
 
   $extended_fields = array(
