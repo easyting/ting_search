@@ -43,7 +43,7 @@ function ting_search_search_result_content_type_render($subtype, $conf, $panel_a
     $keys = $context->data;
   }
 
-  $conditions =  NULL;
+  $conditions = NULL;
   if (isset($info['conditions_callback']) && function_exists($info['conditions_callback'])) {
     // Build an optional array of more search conditions.
     $conditions = $info['conditions_callback']($keys);
