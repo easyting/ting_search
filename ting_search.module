@@ -676,6 +676,8 @@ function ting_search_sort_form($form_state) {
       'creator_descending' => t('Creator (Descending)'),
       'date_ascending' => t('Date (Ascending)'),
       'date_descending' => t('Date (Descending)'),
+      'acquisitionDate_ascending' => t('Acquisition date (Ascending)'),
+      'acquisitionDate_descending' => t('Acquisition date (Descending)'),
     ),
     '#description' => t('Set sort order for search result'),
   );
