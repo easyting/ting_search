@@ -74,18 +74,6 @@ function ting_search_ding_facetbrowser() {
 }
 
 /**
- * Implements hook_entity_info_alter().
- */
-function ting_search_entity_info_alter(&$entity_info) {
-  $entity_info['ting_collection']['view modes'] += array(
-    'search_result' => array(
-      'label' => t('Search result'),
-      'custom settings' => FALSE,
-    ),
-  );
-}
-
-/**
  * Implements hook_theme().
  */
 function ting_search_theme() {
@@ -202,9 +190,6 @@ function ting_search_form_search_block_form_alter(&$form, &$form_state, $form_id
       '#prefix' => '<div id="advanced-search-wrapper">',
       '#suffix' => '</div>',
       '#attached' => array(
-        'css' => array(
-          drupal_get_path('module', 'ting_search') . '/ting_search_extendform.css',
-        ),
         'js' => array(
           drupal_get_path('module', 'ting_search') . '/ting_search_extendform.js',
         ),
@@ -635,19 +620,16 @@ function ting_search_block_view($delta = '') {
   $block = array();
   switch ($delta) {
     case 'sort-form':
-      drupal_add_css(drupal_get_path('module', 'ting_search') . '/ting_search_extendform.css');
       drupal_add_js(drupal_get_path('module', 'ting_search') . '/ting_search_extendform.js');
       $block['subject'] = t('Ting search sort controls');
       $block['content'] = drupal_get_form('ting_search_sort_form');
       break;
     case 'records-per-page':
-      drupal_add_css(drupal_get_path('module', 'ting_search') . '/ting_search_extendform.css');
       drupal_add_js(drupal_get_path('module', 'ting_search') . '/ting_search_extendform.js');
       $block['subject'] = t('Ting search records per page controls');
       $block['content'] = records_per_page_controls_content();
       break;
     case 'search-display-extended-query':
-      drupal_add_css(drupal_get_path('module', 'ting_search') . '/ting_search_extendform.css');
       drupal_add_js(drupal_get_path('module', 'ting_search') . '/ting_search_extendform.js');
       $block['content'] = theme('ting_search_display_extended_query', array('query_label' => t('Your query:'), 'query_string' => NULL));
       break;
@@ -834,7 +816,7 @@ function _ting_search_quote($string) {
   if (preg_match('/^(.*?)(AND \(.*|$)/', $string, $rx)) {
     $keys = $rx[1];
     $new_keys = preg_replace_callback('/(?:(".*?(?<!\\\)")|\b(and|or|not|prox)\b)/i', '_ting_search_quote_callback', $keys);
-    $string = preg_replace('/^' . preg_quote($keys) . '/', $new_keys, $string);
+    $string = preg_replace('/^' . preg_quote($keys, '/') . '/', $new_keys, $string);
   }
   return $string;
 }
