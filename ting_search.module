@@ -91,18 +91,34 @@ function ting_search_entity_info_alter(&$entity_info) {
 function ting_search_theme() {
   return array(
     'ting_search_results' => array(
-      'variables' => array('results' => NULL, 'module' => NULL),
-      'file'      => 'ting_search.pages.inc',
-      'template'  => 'ting-search-results',
+      'variables' => array(
+        'results' => NULL,
+        'module' => NULL,
+      ),
+      'file' => 'ting_search.pages.inc',
+      'template' => 'ting-search-results',
     ),
     'ting_search_mini_pager' => array(
-      'variables' => array('tags' => array(), 'element' => 0, 'parameters' => array(), 'quantity' => 9),
+      'variables' => array(
+        'tags' => array(),
+        'element' => 0,
+        'parameters' => array(),
+        'quantity' => 9,
+      ),
     ),
     'ting_search_pager' => array(
-      'variables' => array('tags' => array(), 'element' => 0, 'parameters' => array(), 'quantity' => 9),
+      'variables' => array(
+        'tags' => array(),
+        'element' => 0,
+        'parameters' => array(),
+        'quantity' => 9,
+      ),
     ),
     'ting_search_display_extended_query' => array(
-      'variables' => array('query_label' => NULL, 'query_string' => NULL),
+      'variables' => array(
+        'query_label' => NULL,
+        'query_string' => NULL,
+      ),
       'template' => 'ting-search-display-extended-query',
     ),
     'ting_search_extended_search' => array(
@@ -276,7 +292,6 @@ function ting_search_conditions_callback($keys) {
     $conditions['size'] = (int) $_REQUEST['size'];
   }
 
-
   if (!empty($_REQUEST['sort'])) {
     $conditions['sort'] = check_plain($_REQUEST['sort']);
   }
@@ -306,7 +321,7 @@ function ting_search_conditions_callback($keys) {
     if ($redirect === TRUE) {
       $facets = array();
       foreach ($conditions['facets'] as $facet) {
-        $facets['facets'][] =  $facet;
+        $facets['facets'][] = $facet;
       }
       drupal_goto(rawurldecode($_GET['q']), array('query' => $facets));
     }
@@ -362,7 +377,7 @@ function ting_search_search_execute($keys = NULL, $conditions = NULL) {
       $searchResult->search_key = $keys;
 
       // TODO: caching highes total_result know value of specific search
-//       at the moment we only know if there is one more page
+      //       at the moment we only know if there is one more page
       $total_results = ($page + 1) * $resultsPerPage + ($searchResult->more ? 1 : 0);
 
       pager_default_initialize($total_results, $resultsPerPage);
@@ -599,16 +614,16 @@ function theme_ting_search_mini_pager($variables) {
  */
 function ting_search_block_info() {
   $blocks['sort-form'] = array(
-      'info' => t('Ting search "sort by" form'),
-      'cache' => DRUPAL_CACHE_PER_PAGE,
+    'info' => t('Ting search "sort by" form'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
     );
   $blocks['records-per-page'] = array(
-      'info' => t('Ting search "records per page"'),
-      'cache' => DRUPAL_CACHE_PER_PAGE,
+    'info' => t('Ting search "records per page"'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
     );
   $blocks['search-display-extended-query'] = array(
-      'info' => t('Ting search extended query display'),
-      'cache' => DRUPAL_CACHE_PER_PAGE,
+    'info' => t('Ting search extended query display'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
     );
   return $blocks;
 }
@@ -660,7 +675,9 @@ function ting_search_sort_form($form_state) {
       'creator_ascending' => t('Creator (Ascending)'),
       'creator_descending' => t('Creator (Descending)'),
       'date_ascending' => t('Date (Ascending)'),
-      'date_descending' => t('Date (Descending)')
+      'date_descending' => t('Date (Descending)'),
+      'acquisitionDate_ascending' => t('Acquisition date (Ascending)'),
+      'acquisitionDate_descending' => t('Acquisition date (Descending)'),
     ),
     '#description' => t('Set sort order for search result'),
   );
@@ -692,7 +709,11 @@ function ting_search_sort_form_submit($form, &$form_state) {
  * Create links for changing how many records per page
  */
 function records_per_page_controls_content() {
-  $sizes = array('10' => t('10'), '25' => t('25'), '50' => t('50'),);
+  $sizes = array(
+    '10' => t('10'),
+    '25' => t('25'),
+    '50' => t('50'),
+  );
   $size = array();
   $size['#type'] = 'markup';
   $size['#prefix'] = '<div id="ting-search-records-per-page">' . t('Results on page:');
@@ -708,9 +729,7 @@ function records_per_page_controls_content() {
     if (isset($_GET['size']) && $_GET['size'] == $number) {
       $classes += array('selected');
     }
-    elseif ((!isset($_GET['size']) ||
-     !in_array($_GET['size'], $sizes)) &&
-     $number == $keys[0]) {
+    elseif ((!isset($_GET['size']) || !in_array($_GET['size'], $sizes)) && $number == $keys[0]) {
       $classes += array('selected');
     }
     $size['#markup'] .= l($text, $_GET['q'], array('query' => $sz + $pg + drupal_get_query_parameters(), 'attributes' => array('class' => $classes,),));
@@ -760,12 +779,12 @@ function ting_search_submit($form, &$form_state) {
   $q = join(' AND ', $q);
 
   $s = $form_state['values']['sort'];
-  if ( $s != "" ) {
+  if ($s != "") {
     $controls['sort'] = $s;
   }
 
   $s = $form_state['values']['size'];
-  if ( $s != "" ) {
+  if ($s != "") {
     $controls['size'] = $s;
   }
 
