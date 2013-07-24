@@ -927,7 +927,7 @@ function ting_search_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       $view->set_arguments(array($search_key));
       $view_rendered_content = $view->preview();
       if (!empty($view->result)) {
-        $site_total_objs = count($view->result);
+        $site_total_objs = $view->total_rows;
       }
     }
 
