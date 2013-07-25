@@ -6,4 +6,3 @@ core = 7.x
 files[] = ting_search.test
 ;dependencies[] = ting
 dependencies[] = search
-stylesheets[all][] = ting_search.css
