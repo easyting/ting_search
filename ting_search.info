@@ -1,9 +1,8 @@
 name = Ting search
 description = Searching for Ting.
 package = Ding!
-version = "7.x-1.12"
+version = "7.x-1.14"
 core = 7.x
 files[] = ting_search.test
 ;dependencies[] = ting
 dependencies[] = search
-stylesheets[all][] = ting_search.css
