@@ -87,7 +87,7 @@ function ting_search_search_result_content_type_render($subtype, $conf, $panel_a
       $block->content .= '<ul><li>' . t(
         'Try to search for !phrase on bibliotek.dk.',
         array(
-          '!phrase' => '<a href="http://bibliotek.dk/vis.php?origin=kommando&field1=fritekst&term1=' . $keys . '">' . $keys . '</a>'
+          '!phrase' => '<a href="http://bibliotek.dk/search/work/' . $keys . '">' . $keys . '</a>'
         )) . '</li></ul>' . search_help('search#noresults', drupal_help_arg());
     }
     else {
